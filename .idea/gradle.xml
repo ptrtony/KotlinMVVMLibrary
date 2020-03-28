@@ -18,7 +18,7 @@
             <option value="$PROJECT_DIR$/YCDevImageLoader" />
             <option value="$PROJECT_DIR$/YCDevVM" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/autoregister" />
+            <option value="$PROJECT_DIR$/buildSrc" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
