@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * Time     2020/3/28 0028
  * Describe
  */
-public class RegisterInfo {
+class RegisterInfo {
     static final DEFAULT_EXCLUDE = [
             '.*/R(\\$[^/]*)?'
             , '.*/BuildConfig$'

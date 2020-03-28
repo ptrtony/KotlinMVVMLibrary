@@ -1,9 +1,16 @@
+apply plugin: 'groovy'
 repositories {
     google()
     jcenter()
+}
 
+repositories {
+    //
+    mavenCentral()
 }
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 }

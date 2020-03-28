@@ -1,4 +1,6 @@
-package com.example.buildsrc;
+package com.example.buildsrc
+
+import org.gradle.api.Project;
 
 /**
  * Name     aop的配置信息

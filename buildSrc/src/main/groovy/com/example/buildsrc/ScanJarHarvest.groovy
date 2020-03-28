@@ -1,4 +1,4 @@
-package com.tang.android.register
+package com.example.buildsrc
 /**
  * 已扫描到接口或者codeInsertToClassName jar的信息
  * @author zhangkb
