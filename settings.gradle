@@ -1,2 +1,2 @@
-include ':app', ':CYExtKt', ':YCDevVM', ':YCDevImageLoader', ':YCDevDataBinding', ':YCDevCore', ':YCDevComponent',':buildSrc'
+include ':app', ':YCExtKt', ':YCDevVM', ':YCDevImageLoader', ':YCDevDataBinding', ':YCDevCore', ':YCDevComponent',':autoregister'
 rootProject.name='YCLibrary'

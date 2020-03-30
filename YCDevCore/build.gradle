@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion build_version.compileSdkVersion
     defaultConfig {
@@ -33,11 +34,106 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    api 'com.android.support:support-annotations:28.0.0'
+//    api 'androidx.annotation:annotation:1.1.0'
+//    api 'org.jetbrains:annotations-java5:15.0'
     api libs.annotations
     api (libs.support_v7){
-        exclude group:'androidx.annotation'
+        exclude group: 'androidx.annotation'
     }
+
     api libs.kotlin_stdlib
-    api libs.kotlin_coroutines//协程
+    api libs.kotlin_coroutines //协程
+
+    api libs.jetpack_lifecycle_extensions
+    api libs.jetpack_lifecycle_java8
+    kapt libs.jetpack_lifecycle_compiler
+
+    api libs.jetpack_viewmodel
+    api libs.jetpack_livedata
+    api libs.jetpack_livedata_rx
+
+    // retrofit
+    api (libs.retrofit){
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    api (libs.retrofit_gson){
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    api (libs.retrofit_rxjava){
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api ('com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'){
+        exclude module: 'retrofit'
+        exclude group: 'org.jetbrains.kotlinx'
+    }
+
+
+    // rx
+    api libs.rxkotlin
+    api (libs.rxandroid){
+        exclude module: 'rxjava'
+    }
+    api libs.rxrelay
+    api libs.rxerrorhandler2
+
+    api (libs.rxcache2) {
+        exclude module: 'rxjava'
+    }
+    implementation (libs.rxcache_jolyglot_gson) {
+        exclude module: 'gson'
+    }
+    api(libs.rxbinding) {
+        exclude module: 'rxjava'
+    }
+
+    // autodispose
+    api (libs.autodispose){
+        exclude module: 'rxjava'
+    }
+
+    api (libs.autodispose_archs_ktx){
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+    }
+
+    // kodein
+    api libs.kodein
+    api libs.kodein_android
+    api (libs.kodein_androidx){
+        exclude group: 'androidx.appcompat'
+    }
+
+    // okhttp
+    api libs.okhttp
+    api libs.okhttp_logging
+
+    api libs.gson
+
+    // logger
+    api (libs.timber){
+        exclude module:'annotations'
+        exclude group:'org.jetbrains'
+    }
+    api libs.logger
+
+    api libs.koi_core
+    api libs.koi_async
 
 }
+
+kapt {
+    generateStubs = true
+}
+
+repositories {
+    mavenCentral()
+}
+

@@ -1,19 +1,20 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+apply plugin: 'kotlin-kapt'
 
+apply plugin: 'auto-register'
+
+
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode build_version.versionCode
+        versionName build_version.versionName
     }
 
     buildTypes {
@@ -22,19 +23,76 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding {
+        enabled true
+    }
+    lintOptions {
+        abortOnError false
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    implementation 'androidx.appcompat:appcompat:1.0.2'
-//    implementation 'androidx.core:core-ktx:1.0.2'
-//    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    kapt libs.jetpack_lifecycle_compiler
+    api libs.arouter
+    implementation libs.retrofit_url_manager
+    api libs.rxpermissions
+
+    debugCompileOnly libs.leak_canary_debug
+    releaseCompileOnly libs.leak_canary_release
+
+    implementation libs.okhttp_logging
+
+    debugCompileOnly 'com.didichuxing.doraemonkit:doraemonkit:1.1.5'
+    releaseCompileOnly 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.1.5'
+
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'com.github.GrenderG:Toasty:1.4.0'
+    api 'com.f2prateek.rx.preferences2:rx-preferences:2.0.0'
+    api project(':YCDevCore')
+    api project(':YCDevDataBinding')
+    api project(':YCDevImageLoader')
+    api project(':YCDevVM')
+    api project(':YCExtKt')
 }
+
+
+kapt {
+    generateStubs = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+//autoregister {
+//    registerInfo = [
+//            [
+//                    'scanInterface'             : 'com.billy.app_lib_interface.ICategory'
+//                    , 'scanSuperClasses'        : ['com.billy.android.autoregister.demo.BaseCategory']
+//                    , 'codeInsertToClassName'   : 'com.billy.app_lib_interface.CategoryManager'
+//                    //未指定codeInsertToMethodName，默认插入到static块中，故此处register必须为static方法
+//                    , 'registerMethodName'      : 'register' //
+//                    , 'exclude'                 : [
+//                    //排除的类，支持正则表达式（包分隔符需要用/表示，不能用.）
+//                    'com.billy.android.autoregister.demo.BaseCategory'.replaceAll('\\.', '/') //排除这个基类
+//            ]
+//            ],
+//            [
+//                    'scanInterface'             : 'com.billy.app_lib.IOther'
+//                    , 'codeInsertToClassName'   : 'com.billy.app_lib.OtherManager'
+//                    , 'codeInsertToMethodName'  : 'init' //非static方法
+//                    , 'registerMethodName'      : 'registerOther' //非static方法
+//            ]
+//    ]
+//}

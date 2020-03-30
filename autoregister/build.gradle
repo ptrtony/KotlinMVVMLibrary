@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'com.android.tools.build:gradle:3.5.3'
+    implementation 'com.android.tools.build:transform-api:1.5.0'
+    implementation 'javassist:javassist:3.12.1.GA'
+    implementation 'commons-io:commons-io:2.6'
+}
+
+repositories {
+    mavenCentral()
+}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //设置插件的GAV参数
+            pom.groupId = 'com.foxcr.plugin'
+            pom.artifactId = 'autoregister'
+            pom.version = '1.0.3'
+            //文件发布到下面目录
+            repository(url: uri('../repo'))
+        }
+    }
+}
