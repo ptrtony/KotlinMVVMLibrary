@@ -1,7 +1,7 @@
 package com.foxcr.ycdevcomponent.http.entity
 
 class BaseResponseBean<T>:ResponseBean<T>() {
-    var code: Int=0
-    var message: String=""
+    var errorCode: Int=0
+    var errorMsg: String=""
     var success: Boolean=false
 }

@@ -1,7 +1,7 @@
 package com.foxcr.autoregister
 
+import com.google.gson.Gson
 import org.gradle.api.Project
-import org.gradle.internal.impldep.com.google.gson.Gson
 import java.lang.reflect.Type
 import static com.android.builder.model.AndroidProject.FD_INTERMEDIATES
 class AutoRegisterHelper {

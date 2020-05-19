@@ -41,7 +41,7 @@ abstract class BaseActivity<VM: BaseViewModel>: AppCompatActivity(), IActivity {
 
     }
 
-    override fun onAttachFragment(fragment: Fragment?) {
+    override fun onAttachFragment(fragment: Fragment) {
         super.onAttachFragment(fragment)
     }
 

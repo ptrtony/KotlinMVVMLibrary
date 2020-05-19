@@ -1,12 +1,20 @@
 package com.foxcr.yclibrary
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.foxcr.ycdevcomponent.base.AppBaseActivity
+import com.foxcr.ycdevvm.base.DataBind
+import com.foxcr.yclibrary.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+@DataBind
+class MainActivity : AppBaseActivity<MainViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun layout(): Int  = R.layout.activity_main
+
+    override fun initVariableId(): Int {
+        return BR.viewModel
     }
+
+
+
+
+
 }

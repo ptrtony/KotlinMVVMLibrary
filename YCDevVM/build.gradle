@@ -41,10 +41,12 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     kapt libs.jetpack_lifecycle_compiler
-    compileOnly libs.recyclerview
     api libs.baseRecyclerViewAdapter
-
+    api libs.smartrefresh
+    api libs.smartRefreshHeader
+    api libs.recyclerview
     compileOnly project(':YCDevCore')
+
 }
 
 kapt {

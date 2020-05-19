@@ -3,6 +3,8 @@ package com.foxcr.autoregister
 import jdk.internal.org.objectweb.asm.ClassReader
 import jdk.internal.org.objectweb.asm.ClassVisitor
 import jdk.internal.org.objectweb.asm.ClassWriter
+import org.gradle.internal.impldep.aQute.bnd.osgi.OpCodes
+import org.objectweb.asm.Opcodes
 
 import java.util.jar.JarEntry
 import java.util.jar.JarFile

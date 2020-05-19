@@ -5,14 +5,18 @@ import com.android.build.api.transform.DirectoryInput
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.JarInput
 import com.android.build.api.transform.QualifiedContent
+import com.android.build.api.transform.Status
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformInput
 import com.android.build.api.transform.TransformOutputProvider
+import com.android.build.gradle.internal.pipeline.TransformManager
+import com.android.utils.FileUtils
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import org.apache.commons.codec.digest.DigestUtils
 import org.gradle.api.Project
 import org.gradle.api.internal.artifacts.transform.TransformException
-import org.gradle.internal.impldep.com.google.gson.Gson
-import org.gradle.internal.impldep.com.google.gson.reflect.TypeToken
-import org.gradle.internal.impldep.org.apache.commons.codec.digest.DigestUtils
+
 class RegisterTransform extends Transform{
     Project project
     AutoRegisterConfig config
@@ -94,7 +98,7 @@ class RegisterTransform extends Transform{
             }
             // 遍历目录
             input.directoryInputs.each { DirectoryInput directoryInput ->
-                long dirTime = System.currentTimeMillis();
+                long dirTime = System.currentTimeMillis()
                 // 获得产物的目录
                 File dest = outputProvider.getContentLocation(directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY)
                 String root = directoryInput.file.absolutePath

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 
 inline fun <reified T : Activity> Context.getIntent(bundle: Bundle? = null): Intent{
@@ -53,3 +55,11 @@ inline fun <reified T : Activity> Fragment.startActivityForResult(bundle: Bundle
     }
     startActivityForResult(intent,requestCode)
 }
+
+
+fun Activity.hideSoftInput() {
+    val view = this.currentFocus?: View(this)
+    val imm = this.applicationContext.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
+

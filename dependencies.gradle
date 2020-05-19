@@ -11,7 +11,7 @@ ext {
     ]
 
     versions = [
-            android_plugin       : '3.5.3',
+            android_plugin       : '3.6.3',
             kotlin               : '1.3.61',
             kotlin_coroutines    : '1.0.0',
 
@@ -59,8 +59,8 @@ ext {
 
             baseRecyclerViewAdapter     : [group: 'com.github.CymChad', name: 'BaseRecyclerViewAdapterHelper', version: '2.9.46'],
             parallaxbacklayout          : [group: 'com.github.anzewei', name: 'parallaxbacklayout', version: '1.1.9'],
-            smartrefresh                : [group: 'com.scwang.smartrefresh', name: 'SmartRefreshLayout', version: '1.1.0-andx-9'],
-
+            smartrefresh                : [group: 'com.scwang.smartrefresh', name: 'SmartRefreshLayout', version: '1.1.2'],
+            smartRefreshHeader : [group: 'com.scwang.smartrefresh',name:'SmartRefreshHeader',version: '1.1.2'],
             jetpack_lifecycle_extensions: [group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: versions.arch_comp_lifecycle],
             jetpack_lifecycle_java8     : [group: 'androidx.lifecycle', name: 'lifecycle-common-java8', version: versions.arch_comp_lifecycle],
             jetpack_lifecycle_compiler  : [group: 'androidx.lifecycle', name: 'lifecycle-compiler', version: versions.arch_comp_lifecycle],
