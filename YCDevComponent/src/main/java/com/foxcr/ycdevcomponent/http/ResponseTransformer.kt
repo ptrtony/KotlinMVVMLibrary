@@ -9,10 +9,10 @@ class ResponseTransformer<T> :ObservableTransformer<BaseResponseBean<T>,T>{
 
     override fun apply(upstream: Observable<BaseResponseBean<T>>): ObservableSource<T> {
         return upstream.flatMap { t ->
-            if (t.success) {
-                Observable.just(t.data)
+            if (t.IsSuccess) {
+                Observable.just(t.Data)
             }else{
-                Observable.error(ServerException(t.errorMsg,t.errorCode))
+                Observable.error(ServerException(t.Message,t.Code))
             }
         }
     }

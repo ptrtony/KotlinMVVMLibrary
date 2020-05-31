@@ -8,7 +8,7 @@ package com.foxcr.ycdevcomponent.constant
  */
 
 object Constants {
-    const val ONLINE_APIS_URL = "https://www.wanandroid.com/"
-    const val TEST_APIS_URL = "https://www.wanandroid.com/"
+    const val ONLINE_APIS_URL = "http://appapi_c.xfyoucai.com/"
+    const val TEST_APIS_URL = "http://appapi_c.xfyoucai.com/"
     const val COOKIE = "Cookie"
 }

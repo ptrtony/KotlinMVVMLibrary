@@ -1,8 +1,7 @@
 package com.foxcr.ycdevcomponent.module
 
-import com.foxcr.cyextkt.ioToUI
 import com.foxcr.ycdevcomponent.http.ResponseTransformerStrategy
-import com.foxcr.ycdevcomponent.model.bean.LoginResp
+import com.foxcr.ycdevcomponent.model.bean.LoginTestResp
 import com.foxcr.ycdevcomponent.model.bean.RegisterResp
 import com.foxcr.ycdevcomponent.service.ApiService
 import com.foxcr.ycdevvm.base.BaseModel
@@ -20,12 +19,11 @@ class UserModel : BaseModel(){
     private val apiService by instance<ApiService>()
     private val mResponseTransformerStrategy by instance<ResponseTransformerStrategy>()
 
-    fun login(username:String,password:String):Observable<LoginResp>{
+    fun login(username:String,password:String):Observable<LoginTestResp>{
         return apiService.login(username, password)
             .compose(mResponseTransformerStrategy.provideObservableTransformer())
 
     }
-
 
     fun register(username:String,password:String,repassword:String):Observable<RegisterResp>{
         return apiService.register(username, password, repassword)

@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import com.foxcr.cyextkt.autoDisposable
 import com.foxcr.cyextkt.ioToUI
 import com.foxcr.cyextkt.observeOnUI
+import com.foxcr.ycdevcomponent.http.ServerException
 import com.foxcr.ycdevcomponent.utils.toasty
 import com.foxcr.ycdevcore.utils.obtainAppKodeinAware
 import com.foxcr.ycdevvm.base.BaseViewModel
@@ -19,11 +20,11 @@ import org.kodein.di.generic.instance
 @Describe:
  */
 
-
 class MainViewModel (application: Application) :  BaseViewModel(application){
     val usernameTextChangeObservable:PublishRelay<CharSequence> = PublishRelay.create()
     val passwordTextChangeObservable:PublishRelay<CharSequence> = PublishRelay.create()
     val loginClickObservable:PublishRelay<Unit> = PublishRelay.create()
+
     private var username:String = ""
     private var password:String = ""
     override fun onCreate(owner: LifecycleOwner) {
@@ -51,7 +52,7 @@ class MainViewModel (application: Application) :  BaseViewModel(application){
 
     private fun onLogin(username:String,password:String){
         val userModel by obtainAppKodeinAware().instance<UserModel>()
-        userModel.register(username,password,password)
+        userModel.login(username,password)
             .ioToUI()
             .autoDisposable(scopeProvider)
             .subscribe({
@@ -59,6 +60,12 @@ class MainViewModel (application: Application) :  BaseViewModel(application){
                 "注册成功".toasty()
             }, {
                 it.printStackTrace()
+                if (it is ServerException){
+                    it.message?.toasty()
+                }else{
+                    it.message.toString().toasty()
+                }
+
             })
 
     }
